@@ -1,3 +1,3 @@
 # Striver_A2Z_DSA
 
-All question of Striver DSA Sheet 
+In this repository, I will be solving all DSA questions of Striver A2Z DSA Sheet.
