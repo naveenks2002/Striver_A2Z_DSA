@@ -1,0 +1,56 @@
+Brute Force approach :
+TC : O(N*N)
+SC : O(1)
+
+vector<int> twoSum(vector<int>& nums, int target) {
+        vector<int> result;
+        for(int i=0;i<nums.size()-1;i++){
+            for(int j=i+1;j<nums.size();j++){
+                if((nums[i]+nums[j])==target){
+                    result.push_back(i);
+                    result.push_back(j);
+                    return result;
+                }
+            }
+        }
+        return res;
+    }
+    
+    
+    
+Better Approach (Hashing) :--- > Using unordered_map
+TC : O(N)
+SC : O(N)
+
+vector<int> twoSum(vector<int>& nums, int sum){
+        unordered_map<int,int> hashmap;
+        vector<int> result;
+        for(int i=0;i<nums.size();i++){
+            int target = sum - nums[i];
+            if(hashmap.find(target)!=hashmap.end()){
+                result.push_back(hashmap[target]);
+                result.push_back(i);
+            }
+            else
+                hashmap.insert({nums[i],i});
+        }
+        return result;
+    }
+    
+Optimal Approach (Two-pointer approach)
+TC : O(N LogN)
+SC : O(1)
+string twoSum(int n, vector<int> &arr, int target) {
+    sort(arr.begin(), arr.end());
+    int left = 0, right = n - 1;
+    while (left < right) {
+        int sum = arr[left] + arr[right];
+        if (sum == target) {
+            return "YES";
+        }
+        else if (sum < target) left++;
+        else right--;
+    }
+    return "NO";
+}
+
