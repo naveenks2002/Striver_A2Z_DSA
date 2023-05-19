@@ -1,0 +1,77 @@
+Brute Force approach : 
+TC : O(N^2)
+SC : O(1)
+
+  int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        sort(nums.begin(), nums.end());
+        for(int i=1; i<n; i++){
+            if(nums[i]==nums[i-1])
+                continue;
+            
+            else{
+                if(count(nums.begin(),nums.end(),nums[i])>n/2)
+                    return nums[i];
+            }
+        }
+    return nums[0];
+    }
+    
+   
+Better Approach (using Hashing) :
+---> unordered_map
+TC : O(N)
+SC : O(1)
+
+int majorityElement(vector<int>& nums) {
+        int n = nums.size();
+        unordered_map<int ,int> mp;
+
+        for(int i=0; i<nums.size(); i++){
+            mp[nums[i]]++;
+        }
+
+        for(auto x: mp){
+            if(x.second>n/2)
+                return x.first;
+        }
+    return nums[0];
+    }
+    
+    
+Optimal Approach (Moore's Voting algorithm) 
+TC : O(2N)
+SC : O(1)
+
+ int majorityElement(int a[], int n)
+    {
+        
+        // your code here
+        int cnt = 0;
+        int el;
+        
+        for(int i=0; i<n; i++){
+            if(cnt==0){
+                cnt = 1;
+                el = a[i];
+            }
+            
+            else if(el==a[i])
+                cnt++;
+            
+            else
+                cnt--;
+        }
+        
+        int cnt1=0;
+        for(int i=0; i<n; i++){
+            if(a[i]==el)
+                cnt1++;
+        }
+        
+        if(cnt1>n/2)
+            return el;
+            
+        return -1;
+    }
+    
